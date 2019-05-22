@@ -1,0 +1,17 @@
+dyn_o_mite:
+  datacenter: dc
+  rack: rack1
+  dyn_listen: 0.0.0.0:8101
+  dyn_seeds:
+  - dynomite2:8101:rack2:dc:1383429731
+  - dynomite3:8101:rack3:dc:1383429731
+  listen: 0.0.0.0:8102
+  servers:
+  - redis1:6379:1
+  tokens: '1383429731'
+  secure_server_option: datacenter
+  pem_key_file: conf/dynomite.pem
+  data_store: 0
+  read_consistency : DC_SAFE_QUORUM
+  write_consistency : DC_SAFE_QUORUM
+  stats_listen: 0.0.0.0:22221

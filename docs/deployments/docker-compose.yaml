@@ -1,0 +1,61 @@
+version: "3.7"
+services:
+  dynomite1:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+    image: dynomite:test
+    container_name: dynomite_1
+    depends_on:
+      - redis1
+    command: "--conf-file=conf/redis_rack1_node.yml -v5"
+    volumes:
+      - ./conf:/dynomite/conf
+#    links:
+#      - dynomite_2
+#      - dynomite_3
+
+  dynomite2:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+    image: dynomite:test
+    container_name: dynomite_2
+    depends_on:
+      - redis2
+    command: "--conf-file=conf/redis_rack2_node.yml -v5"
+    volumes:
+      - ./conf:/dynomite/conf
+#    links:
+#      - dynomite_1
+#      - dynomite_3
+
+  dynomite3:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+    image: dynomite:test
+    container_name: dynomite_3
+    depends_on:
+      - redis3
+    command: "--conf-file=conf/redis_rack3_node.yml -v5"
+    volumes:
+      - ./conf:/dynomite/conf
+#    links:
+#      - dynomite_1
+#      - dynomite_2
+
+  redis1:
+    image: redis:5.0.5-alpine
+    container_name: redis_1
+    command: redis-server
+
+  redis2:
+    image: redis:5.0.5-alpine
+    container_name: redis_2
+    command: redis-server
+
+  redis3:
+    image: redis:5.0.5-alpine
+    container_name: redis_3
+    command: redis-server
